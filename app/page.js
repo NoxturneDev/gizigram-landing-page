@@ -1,51 +1,51 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Smartphone, Zap, Shield, Users, Star, Download, Mail, Menu, X, CheckCircle, ArrowRight } from "lucide-react"
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Smartphone, Zap, Shield, Users, Star, Download, Mail, Menu, X, CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function MobileAppLanding() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("hero")
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "features", "solutions", "details", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const sections = ['hero', 'features', 'solutions', 'details', 'contact'];
+      const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
-        const element = document.getElementById(section)
+        const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element
+          const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
+            setActiveSection(section);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId)
+  const scrollToSection = sectionId => {
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsMenuOpen(false)
-  }
+    setIsMenuOpen(false);
+  };
 
   const navItems = [
-    { id: "hero", label: "Home x" },
-    { id: "features", label: "Features" },
-    { id: "solutions", label: "Solutions" },
-    { id: "details", label: "Details" },
-    { id: "contact", label: "Contact" },
-  ]
+    { id: 'hero', label: 'Home x' },
+    { id: 'features', label: 'Features' },
+    { id: 'solutions', label: 'Solutions' },
+    { id: 'details', label: 'Details' },
+    { id: 'contact', label: 'Contact' },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -55,20 +55,22 @@ export default function MobileAppLanding() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <Smartphone className="h-8 w-8 text-primary mr-2" />
-              <span className="font-bold text-xl text-foreground">AppName</span>
+              <span className="font-bold text-xl text-foreground">
+                Gizi<span class="text-primary">Gram</span>
+              </span>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                {navItems.map((item) => (
+                {navItems.map(item => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       activeSection === item.id
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
                     {item.label}
@@ -93,14 +95,14 @@ export default function MobileAppLanding() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card border-t border-border">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors ${
                     activeSection === item.id
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
                   {item.label}
@@ -120,15 +122,18 @@ export default function MobileAppLanding() {
           <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
             <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl text-balance">
-                Your Perfect
-                <span className="text-primary"> Mobile App</span>
+                Gizi<span class="text-primary">Gram</span>
+                <span className="text-primary">
+                  <br />
+                  Mobile App
+                </span>
               </h1>
               <p className="mt-3 text-base text-muted-foreground sm:mt-5 sm:text-xl lg:text-lg xl:text-xl text-pretty">
                 Experience the future of mobile productivity with our innovative app that simplifies your daily tasks
                 and connects you with what matters most.
               </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <Button size="lg" className="w-full sm:w-auto mr-4 mb-4 sm:mb-0">
+                <Button size="lg" className="w-full sm:w-auto mr-4 mb-4 sm:mb-0 bg-primary">
                   <Download className="mr-2 h-5 w-5" />
                   Download Now
                 </Button>
@@ -140,7 +145,11 @@ export default function MobileAppLanding() {
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
               <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                <img src="/modern-smartphone-mockup-showing-app-interface.png" alt="Mobile app mockup" className="w-full rounded-lg" />
+                <img
+                  src="/phone-2.jpg"
+                  alt="Mobile app mockup"
+                  className="w-full rounded-lg"
+                />
               </div>
             </div>
           </div>
@@ -163,23 +172,27 @@ export default function MobileAppLanding() {
             {[
               {
                 icon: Zap,
-                title: "Lightning Fast",
-                description: "Optimized performance ensures smooth operation even on older devices.",
+                title: 'Food Scan & Nutrition Analysis',
+                description:
+                  'Uses AI technology to scan food, providing instant nutritional information and classifying meals as healthy or unhealthy',
               },
               {
                 icon: Shield,
-                title: "Secure & Private",
-                description: "End-to-end encryption keeps your data safe and private at all times.",
+                title: 'Personalized Recommendations',
+                description:
+                  'Offers suggestions for healthier food alternatives and dietary improvements based on scan results.',
               },
               {
                 icon: Users,
-                title: "Team Collaboration",
-                description: "Work together seamlessly with real-time sync and sharing features.",
+                title: 'Data Integration & Reporting',
+                description:
+                  'Provides secure data storage, allowing healthcare providers and local authorities to generate useful insights for nutrition programs',
               },
               {
                 icon: Star,
-                title: "Premium Experience",
-                description: "Intuitive design and premium features for the best user experience.",
+                title: 'Child Growth Monitoring Dashboard',
+                description:
+                  "A platform for Puskesmas to track children's growth data, detect early risks of stunting, and provide timely interventions.",
               },
             ].map((feature, index) => (
               <Card key={index} className="text-center hover:shadow-lg transition-shadow">
@@ -203,26 +216,24 @@ export default function MobileAppLanding() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-                Solve Your Daily Challenges
-              </h2>
+              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">Our Users</h2>
               <p className="mt-4 text-lg text-muted-foreground text-pretty">
-                Our app addresses the common pain points of modern mobile users with intelligent solutions.
+                Our App help users to track their children's growth data
               </p>
 
               <div className="mt-8 space-y-6">
                 {[
                   {
-                    title: "Streamlined Workflow",
-                    description: "Eliminate repetitive tasks with smart automation and intuitive design.",
+                    title: 'Parents and caregivers',
+                    description: 'These are parents of infants and young children who need accessible tools to ensure the food they provide is nutritious and supports healthy growth.',
                   },
                   {
-                    title: "Enhanced Productivity",
-                    description: "Focus on what matters most with distraction-free interfaces and smart notifications.",
+                    title: 'Healthcare providers',
+                    description: ' includes staff at community health centers, known as Puskesmas. They require an integrated dashboard to monitor child growth and detect early signs of stunting.',
                   },
                   {
-                    title: "Seamless Integration",
-                    description: "Connect with your favorite tools and services for a unified experience.",
+                    title: 'Local governments and NGOs',
+                    description: '  These are organizations that focus on child nutrition and health programs with the primary goal of reducing stunting rates..',
                   },
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start">
@@ -238,7 +249,7 @@ export default function MobileAppLanding() {
 
             <div className="mt-12 lg:mt-0">
               <img
-                src="/mobile-app-benefits-illustration-showing-productiv.png"
+                src="/phone-1.png"
                 alt="App benefits illustration"
                 className="w-full rounded-lg shadow-lg"
               />
@@ -262,25 +273,25 @@ export default function MobileAppLanding() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Dashboard Overview",
-                description: "Get a complete view of your activities and progress at a glance.",
-                image: "/mobile-app-dashboard-screenshot.png",
+                title: 'Dashboard Overview',
+                description: 'Get a complete view of your activities and progress at a glance.',
+                image: '/dashboard.png',
               },
               {
-                title: "Smart Notifications",
-                description: "Stay informed with intelligent alerts that adapt to your preferences.",
-                image: "/mobile-app-notifications-interface.png",
+                title: 'Smart Notifications',
+                description: 'Stay informed with intelligent alerts that adapt to your preferences.',
+                image: '/dashboard-2.png',
               },
               {
-                title: "Advanced Settings",
-                description: "Customize every aspect of your experience with powerful configuration options.",
-                image: "/mobile-app-settings.png",
+                title: 'Advanced Settings',
+                description: 'Customize every aspect of your experience with powerful configuration options.',
+                image: '/phone-1.png',
               },
             ].map((detail, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="aspect-video">
                   <img
-                    src={detail.image || "/placeholder.svg"}
+                    src={detail.image || '/placeholder.svg'}
                     alt={detail.title}
                     className="w-full h-full object-cover"
                   />
@@ -337,12 +348,14 @@ export default function MobileAppLanding() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center mb-4 md:mb-0">
               <Smartphone className="h-8 w-8 text-primary mr-2" />
-              <span className="font-bold text-xl text-foreground">AppName</span>
+              <span className="font-bold text-xl text-foreground">
+                Gizi<span class="text-primary">Gram</span>
+              </span>
             </div>
-            <p className="text-muted-foreground text-center md:text-right">© 2024 AppName. All rights reserved.</p>
+            <p className="text-muted-foreground text-center md:text-right">© 2024 GiziGram. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
